@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ethan Liu | Project Portfolio</title>
+<meta name="description" content="Hardware and IC design project portfolio of Ethan Liu, Carnegie Mellon ECE.">
+<link rel="stylesheet" href="style.css"></head><body>
+<nav><a href="#top" class="brand">Ethan Liu</a><div><a href="#projects">Projects</a><a href="#contact">Contact</a></div></nav>
+<main id="top">
+<section class="hero"><p class="eyebrow">Electrical and Computer Engineering, Carnegie Mellon University</p>
+<h1>Ethan Liu</h1><p class="lead">ECE student at Carnegie Mellon University (integrated B.S. and M.S., expected May 2028), seeking hardware internships and co-ops in IC design, physical design, and design verification.</p>
+<p class="links"><a class="btn" href="#projects">View projects</a><a class="btn ghost" href="https://github.com/EthanL2649">GitHub</a><a class="btn ghost" href="https://www.linkedin.com/in/ethan-liu-pf06">LinkedIn</a></p></section>
+<section id="projects"><h2>Projects</h2><div class="filters"><button class="f active" data-f="all">All</button><button class="f" data-f="Physical_Design">Physical Design</button><button class="f" data-f="Custom_IC">Custom IC</button><button class="f" data-f="Memory">Memory</button><button class="f" data-f="STA">STA</button><button class="f" data-f="TCL">TCL</button><button class="f" data-f="Verification">Verification</button><button class="f" data-f="RTL">RTL</button><button class="f" data-f="Architecture">Architecture</button><button class="f" data-f="FPGA">FPGA</button><button class="f" data-f="Board_Design">Board Design</button><button class="f" data-f="Research">Research</button><button class="f" data-f="Analog">Analog</button><button class="f" data-f="Embedded">Embedded</button><button class="f" data-f="Hardware">Hardware</button><button class="f" data-f="CAD">CAD</button><button class="f" data-f="Modeling">Modeling</button><button class="f" data-f="Controls">Controls</button><button class="f" data-f="Software">Software</button></div><div class="grid">
+<article class="card featured" data-tags="Physical_Design Custom_IC Memory" id="sram">
+<header><h3>256x16b SRAM Design</h3><span class="date">Oct. 2026 to Nov. 2026</span></header>
+<p class="sub">Full-custom memory in Cadence Virtuoso, 45nm GPDK (18-622)</p>
+<ul><li>Designed a single-port 256-word by 16-bit SRAM in the 45nm GPDK process against four targets: under 24 FO4 access time, under 2.0 mW, a repeated cell area under 1600 λ², and cell area efficiency above 50%.</li><li>Laid out the SRAM cell as compactly as the DRC rules allow and built a 4x4 tiled array to extract the repeat distance, area, and X and Y dimensions and show tiling and contact sharing.</li><li>Completed DRC/LVS-clean layouts of the decoder, cell I/O, and control signal generator and integrated them with the cell array into a DRC/LVS-clean top-level layout.</li><li>Built schematics with wire parasitic models and ran read and write critical path and noise margin simulations.</li><li>Meets every constraint at the TTTT, TTLH, and TTHL corners, verified with an extensive testbench covering all test vectors.</li></ul>
+<p class="skills"><span>Skills used</span> Cadence Virtuoso, Spectre, schematic and layout, DRC/LVS, parasitic modeling, corner simulation</p>
+<div class="foot"><span class="tag">Physical Design</span><span class="tag">Custom IC</span><span class="tag">Memory</span></div></article>
+<article class="card featured" data-tags="Physical_Design STA TCL" id="rtl2gds">
+<header><h3>RTL-to-GDS Flow and PPA Analysis</h3><span class="date"></span></header>
+<p class="sub">Signed MAC datapath with Cadence Genus and Innovus</p>
+<ul><li>Synthesized a pipelined signed 16x16 multiply-accumulate unit in Cadence Genus using TCL-driven flows that swept clock targets and cell types, weighting the critical path group to close worst negative slack.</li><li>Quantified a 1.6x faster critical path at roughly 5x the leakage, and a 200 MHz clock push that cost 8.6% more area and 12% more energy per cycle.</li><li>Ran the full Innovus flow (placement, clock tree synthesis, hold fixing, routing, signoff) to GDS, comparing post-signoff timing, area, and power against synthesis and checking for setup and hold violations.</li><li>Customized floorplanning and pin placement with TCL and scaled the flow to a 2x2 MAC array, assigning macro pins and clock entry to minimize block area.</li></ul>
+<p class="skills"><span>Skills used</span> Cadence Genus, Cadence Innovus, TCL, static timing analysis, PPA analysis</p>
+<div class="foot"><span class="tag">Physical Design</span><span class="tag">STA</span><span class="tag">TCL</span></div></article>
+<article class="card" data-tags="Physical_Design Custom_IC STA" id="datapath">
+<header><h3>Digital Datapath Design and Physical Layout</h3><span class="date"></span></header>
+<p class="sub">Custom IC design in Cadence Virtuoso, gpdk045</p>
+<ul><li>Designed a master-slave flip-flop and multi-stage datapath in the gpdk045 45nm process and drew the layout, reaching a DRC/LVS-clean 65.265 µm², within the 75 µm² constraint.</li><li>Ran parasitic extraction and static timing analysis in ADE Explorer, root-causing a setup violation against a 2.4 GHz target clock.</li></ul>
+<p class="skills"><span>Skills used</span> Cadence Virtuoso, ADE Explorer, DRC/LVS, parasitic extraction, timing analysis</p>
+<div class="foot"><span class="tag">Physical Design</span><span class="tag">Custom IC</span><span class="tag">STA</span></div></article>
+<article class="card" data-tags="Verification RTL" id="abv">
+<header><h3>Assertion-Based Verification of Encrypted Calculator IP</h3><span class="date">Oct. 2026</span></header>
+<p class="sub">SystemVerilog assertions with Synopsys VCS (18-341)</p>
+<ul><li>Verified an encrypted RPN calculator IP (8-entry stack, 6 operations, 4 error outputs) without a reference model, using a 10-category fault model and 32 directed tests.</li><li>Wrote 36 concurrent assertions from 28 properties using implications, local variables, and reset-disabled checks, plus a protocol and stack-depth tracker that predicts errors without copying stack contents.</li><li>Detected injected faults in all 7 faulty design variants (dropped carry, one&#x27;s-complement negation, no-op swap, non-sticky error flags) with zero false alarms on the fault-free model.</li></ul>
+<p class="skills"><span>Skills used</span> SystemVerilog, SVA, Synopsys VCS, DVE, fault modeling</p>
+<div class="foot"><span class="tag">Verification</span><span class="tag">RTL</span></div></article>
+<article class="card" data-tags="RTL Verification" id="noc">
+<header><h3>Network on Chip (NoC)</h3><span class="date"></span></header>
+<p class="sub">SystemVerilog RTL design and verification</p>
+<ul><li>Designed a synchronous Network-on-Chip at the FSM-D level with Node and Router modules, a custom FIFO, and round-robin arbitration, supporting concurrent packet transfers across a 2-router, 6-node topology.</li><li>Verified the design in VCS across functional, stress/load, fairness, and performance test categories, passing every category.</li></ul>
+<p class="skills"><span>Skills used</span> SystemVerilog, FSM design, arbitration logic, functional verification, VCS</p>
+<div class="foot"><span class="tag">RTL</span><span class="tag">Verification</span></div></article>
+<article class="card" data-tags="RTL Architecture FPGA" id="risc240">
+<header><h3>RISC240 Multiplication Coprocessor</h3><span class="date"></span></header>
+<p class="sub">Microarchitecture and RTL design, 16-bit RISC-V-derived CPU</p>
+<ul><li>Implemented a multiplication coprocessor in SystemVerilog and integrated it into the datapath and control logic of a 16-bit RISC-V-derived CPU.</li><li>Wrote assembly test programs and validated them in an instruction-level simulator, then synthesized the design and debugged timing and control interactions on FPGA hardware.</li></ul>
+<p class="skills"><span>Skills used</span> SystemVerilog, computer architecture, assembly, hardware debugging</p>
+<div class="foot"><span class="tag">RTL</span><span class="tag">Architecture</span><span class="tag">FPGA</span></div></article>
+<article class="card" data-tags="RTL FPGA" id="matmul">
+<header><h3>Matrix Multiply Accelerator</h3><span class="date"></span></header>
+<p class="sub">Pipelined FPGA design in Vivado</p>
+<ul><li>Designed a pipelined 128x128 matrix-vector multiply-accumulate in SystemVerilog on a Spartan-7, meeting 100 MHz timing and finishing in under 512 clock cycles.</li></ul>
+<p class="skills"><span>Skills used</span> SystemVerilog, pipelining, Vivado, static timing analysis</p>
+<div class="foot"><span class="tag">RTL</span><span class="tag">FPGA</span></div></article>
+<article class="card" data-tags="Board_Design Research" id="harness">
+<header><h3>IC I/O Test Harness (TinyTapeout)</h3><span class="date">Jan. 2026 to Present</span></header>
+<p class="sub">Research assistant, CMU ECE</p>
+<ul><li>Contributed to board-level design for a chip test harness supporting TSMC 180nm/65nm tapeouts, building component libraries in Fusion 360 and KiCAD, selecting level-shifter ICs against datasheet specifications, and running ERC on the schematics.</li><li>Worked in a 4-person board team inside a 12-person project, documenting design trade-offs and contributing to BOM development and part sourcing.</li></ul>
+<p class="skills"><span>Skills used</span> Fusion 360, KiCAD, ERC, component selection, BOM development</p>
+<div class="foot"><span class="tag">Board Design</span><span class="tag">Research</span></div></article>
+<article class="card" data-tags="Analog Embedded Hardware" id="rfid">
+<header><h3>125 kHz RFID Reader System</h3><span class="date">Nov. 2025</span></header>
+<p class="sub">Analog circuits and embedded C</p>
+<ul><li>Designed the reader coil and tag-powering circuitry for a passive 125 kHz tag, then built the analog band-pass and low-pass demodulation chain to recover baseband data.</li><li>Wrote C firmware to decode 40-bit tag IDs, with the analog and digital stages operating in one signal chain.</li><li>Debugged the filter stages through iterative bench measurement with an oscilloscope, multimeter, and bench power supplies until the data was recovered reliably.</li></ul>
+<p class="skills"><span>Skills used</span> Analog circuit design, filter design, embedded C, oscilloscope, multimeter, soldering</p>
+<div class="foot"><span class="tag">Analog</span><span class="tag">Embedded</span><span class="tag">Hardware</span></div></article>
+<article class="card" data-tags="Embedded CAD Hardware" id="guitar">
+<header><h3>Self-Playing Guitar</h3><span class="date">Jan. 2025</span></header>
+<p class="sub">BUILD18 Hardware Design Competition</p>
+<ul><li>Led CAD and embedded design for a self-playing guitar, building a modular electromechanical interface of SolidWorks-modeled solenoid housings, servo mounts, and a linear-actuator linkage.</li><li>Wrote Arduino firmware on an ESP32 to coordinate servo and linear-actuator motion and completed all electrical wiring, delivering a working prototype that played a clean chord.</li></ul>
+<p class="skills"><span>Skills used</span> SolidWorks, ESP32, Arduino, servo and actuator control, wiring, system integration</p>
+<div class="foot"><span class="tag">Embedded</span><span class="tag">CAD</span><span class="tag">Hardware</span></div></article>
+<article class="card" data-tags="Modeling Controls" id="fsae">
+<header><h3>Field Weakening Model</h3><span class="date">Aug. 2024 to Present</span></header>
+<p class="sub">Carnegie Mellon Racing (Formula SAE), electric vehicle team</p>
+<ul><li>Modeled field weakening in MATLAB and Simulink for the team&#x27;s high-voltage electric motor system, varying it to measure its effect on torque, power, and speed.</li><li>Found a vehicle speed gain of over 20% and showed that field weakening holds constant power at higher speeds at the cost of torque.</li></ul>
+<p class="skills"><span>Skills used</span> MATLAB, Simulink, motor control, modeling and simulation</p>
+<div class="foot"><span class="tag">Modeling</span><span class="tag">Controls</span></div></article>
+<article class="card" data-tags="Software Architecture" id="cache">
+<header><h3>Cache Lab</h3><span class="date"></span></header>
+<p class="sub">Cache simulator and matrix transpose optimization in C (18-213)</p>
+<ul><li>Wrote a cache simulator in C and optimized a matrix transpose for cache performance.</li><li>Transpose results: 35,456 cycles (32x32) and 33,881,344 cycles (1024x1024).</li></ul>
+<p class="skills"><span>Skills used</span> C, cache architecture, performance optimization</p>
+<div class="foot"><span class="tag">Software</span><span class="tag">Architecture</span></div></article>
+</div></section>
+<section id="contact"><h2>Contact</h2><p><a href="mailto:eeliu@andrew.cmu.edu">eeliu@andrew.cmu.edu</a> &middot; <a href="https://www.linkedin.com/in/ethan-liu-pf06">LinkedIn</a> &middot; <a href="https://github.com/EthanL2649">GitHub</a></p></section>
+</main><footer>Ethan Liu</footer>
+<script>
+document.querySelectorAll('.f').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('.f').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+ const f=b.dataset.f;document.querySelectorAll('.card').forEach(c=>{c.hidden=!(f==='all'||c.dataset.tags.split(' ').includes(f));});
+}));
+</script></body></html>

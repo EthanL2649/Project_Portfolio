@@ -1,0 +1,203 @@
+{
+ "name": "Ethan Liu",
+ "tagline": "ECE student at Carnegie Mellon University (integrated B.S. and M.S., expected May 2028), seeking hardware internships and co-ops in IC design, physical design, and design verification.",
+ "email": "eeliu@andrew.cmu.edu",
+ "linkedin": "https://www.linkedin.com/in/ethan-liu-pf06",
+ "github": "https://github.com/EthanL2649",
+ "projects": [
+  {
+   "id": "sram",
+   "featured": true,
+   "title": "256x16b SRAM Design",
+   "sub": "Full-custom memory in Cadence Virtuoso, 45nm GPDK (18-622)",
+   "date": "Oct. 2026 to Nov. 2026",
+   "tags": [
+    "Physical Design",
+    "Custom IC",
+    "Memory"
+   ],
+   "bullets": [
+    "Designed a single-port 256-word by 16-bit SRAM in the 45nm GPDK process against four targets: under 24 FO4 access time, under 2.0 mW, a repeated cell area under 1600 λ², and cell area efficiency above 50%.",
+    "Laid out the SRAM cell as compactly as the DRC rules allow and built a 4x4 tiled array to extract the repeat distance, area, and X and Y dimensions and show tiling and contact sharing.",
+    "Completed DRC/LVS-clean layouts of the decoder, cell I/O, and control signal generator and integrated them with the cell array into a DRC/LVS-clean top-level layout.",
+    "Built schematics with wire parasitic models and ran read and write critical path and noise margin simulations.",
+    "Meets every constraint at the TTTT, TTLH, and TTHL corners, verified with an extensive testbench covering all test vectors."
+   ],
+   "skills": "Cadence Virtuoso, Spectre, schematic and layout, DRC/LVS, parasitic modeling, corner simulation"
+  },
+  {
+   "id": "rtl2gds",
+   "featured": true,
+   "title": "RTL-to-GDS Flow and PPA Analysis",
+   "sub": "Signed MAC datapath with Cadence Genus and Innovus",
+   "date": "",
+   "tags": [
+    "Physical Design",
+    "STA",
+    "TCL"
+   ],
+   "bullets": [
+    "Synthesized a pipelined signed 16x16 multiply-accumulate unit in Cadence Genus using TCL-driven flows that swept clock targets and cell types, weighting the critical path group to close worst negative slack.",
+    "Quantified a 1.6x faster critical path at roughly 5x the leakage, and a 200 MHz clock push that cost 8.6% more area and 12% more energy per cycle.",
+    "Ran the full Innovus flow (placement, clock tree synthesis, hold fixing, routing, signoff) to GDS, comparing post-signoff timing, area, and power against synthesis and checking for setup and hold violations.",
+    "Customized floorplanning and pin placement with TCL and scaled the flow to a 2x2 MAC array, assigning macro pins and clock entry to minimize block area."
+   ],
+   "skills": "Cadence Genus, Cadence Innovus, TCL, static timing analysis, PPA analysis"
+  },
+  {
+   "id": "datapath",
+   "title": "Digital Datapath Design and Physical Layout",
+   "sub": "Custom IC design in Cadence Virtuoso, gpdk045",
+   "date": "",
+   "tags": [
+    "Physical Design",
+    "Custom IC",
+    "STA"
+   ],
+   "bullets": [
+    "Designed a master-slave flip-flop and multi-stage datapath in the gpdk045 45nm process and drew the layout, reaching a DRC/LVS-clean 65.265 µm², within the 75 µm² constraint.",
+    "Ran parasitic extraction and static timing analysis in ADE Explorer, root-causing a setup violation against a 2.4 GHz target clock."
+   ],
+   "skills": "Cadence Virtuoso, ADE Explorer, DRC/LVS, parasitic extraction, timing analysis"
+  },
+  {
+   "id": "abv",
+   "title": "Assertion-Based Verification of Encrypted Calculator IP",
+   "sub": "SystemVerilog assertions with Synopsys VCS (18-341)",
+   "date": "Oct. 2026",
+   "tags": [
+    "Verification",
+    "RTL"
+   ],
+   "bullets": [
+    "Verified an encrypted RPN calculator IP (8-entry stack, 6 operations, 4 error outputs) without a reference model, using a 10-category fault model and 32 directed tests.",
+    "Wrote 36 concurrent assertions from 28 properties using implications, local variables, and reset-disabled checks, plus a protocol and stack-depth tracker that predicts errors without copying stack contents.",
+    "Detected injected faults in all 7 faulty design variants (dropped carry, one's-complement negation, no-op swap, non-sticky error flags) with zero false alarms on the fault-free model."
+   ],
+   "skills": "SystemVerilog, SVA, Synopsys VCS, DVE, fault modeling"
+  },
+  {
+   "id": "noc",
+   "title": "Network on Chip (NoC)",
+   "sub": "SystemVerilog RTL design and verification",
+   "date": "",
+   "tags": [
+    "RTL",
+    "Verification"
+   ],
+   "bullets": [
+    "Designed a synchronous Network-on-Chip at the FSM-D level with Node and Router modules, a custom FIFO, and round-robin arbitration, supporting concurrent packet transfers across a 2-router, 6-node topology.",
+    "Verified the design in VCS across functional, stress/load, fairness, and performance test categories, passing every category."
+   ],
+   "skills": "SystemVerilog, FSM design, arbitration logic, functional verification, VCS"
+  },
+  {
+   "id": "risc240",
+   "title": "RISC240 Multiplication Coprocessor",
+   "sub": "Microarchitecture and RTL design, 16-bit RISC-V-derived CPU",
+   "date": "",
+   "tags": [
+    "RTL",
+    "Architecture",
+    "FPGA"
+   ],
+   "bullets": [
+    "Implemented a multiplication coprocessor in SystemVerilog and integrated it into the datapath and control logic of a 16-bit RISC-V-derived CPU.",
+    "Wrote assembly test programs and validated them in an instruction-level simulator, then synthesized the design and debugged timing and control interactions on FPGA hardware."
+   ],
+   "skills": "SystemVerilog, computer architecture, assembly, hardware debugging"
+  },
+  {
+   "id": "matmul",
+   "title": "Matrix Multiply Accelerator",
+   "sub": "Pipelined FPGA design in Vivado",
+   "date": "",
+   "tags": [
+    "RTL",
+    "FPGA"
+   ],
+   "bullets": [
+    "Designed a pipelined 128x128 matrix-vector multiply-accumulate in SystemVerilog on a Spartan-7, meeting 100 MHz timing and finishing in under 512 clock cycles."
+   ],
+   "skills": "SystemVerilog, pipelining, Vivado, static timing analysis"
+  },
+  {
+   "id": "harness",
+   "title": "IC I/O Test Harness (TinyTapeout)",
+   "sub": "Research assistant, CMU ECE",
+   "date": "Jan. 2026 to Present",
+   "tags": [
+    "Board Design",
+    "Research"
+   ],
+   "bullets": [
+    "Contributed to board-level design for a chip test harness supporting TSMC 180nm/65nm tapeouts, building component libraries in Fusion 360 and KiCAD, selecting level-shifter ICs against datasheet specifications, and running ERC on the schematics.",
+    "Worked in a 4-person board team inside a 12-person project, documenting design trade-offs and contributing to BOM development and part sourcing."
+   ],
+   "skills": "Fusion 360, KiCAD, ERC, component selection, BOM development"
+  },
+  {
+   "id": "rfid",
+   "title": "125 kHz RFID Reader System",
+   "sub": "Analog circuits and embedded C",
+   "date": "Nov. 2025",
+   "tags": [
+    "Analog",
+    "Embedded",
+    "Hardware"
+   ],
+   "bullets": [
+    "Designed the reader coil and tag-powering circuitry for a passive 125 kHz tag, then built the analog band-pass and low-pass demodulation chain to recover baseband data.",
+    "Wrote C firmware to decode 40-bit tag IDs, with the analog and digital stages operating in one signal chain.",
+    "Debugged the filter stages through iterative bench measurement with an oscilloscope, multimeter, and bench power supplies until the data was recovered reliably."
+   ],
+   "skills": "Analog circuit design, filter design, embedded C, oscilloscope, multimeter, soldering"
+  },
+  {
+   "id": "guitar",
+   "title": "Self-Playing Guitar",
+   "sub": "BUILD18 Hardware Design Competition",
+   "date": "Jan. 2025",
+   "tags": [
+    "Embedded",
+    "CAD",
+    "Hardware"
+   ],
+   "bullets": [
+    "Led CAD and embedded design for a self-playing guitar, building a modular electromechanical interface of SolidWorks-modeled solenoid housings, servo mounts, and a linear-actuator linkage.",
+    "Wrote Arduino firmware on an ESP32 to coordinate servo and linear-actuator motion and completed all electrical wiring, delivering a working prototype that played a clean chord."
+   ],
+   "skills": "SolidWorks, ESP32, Arduino, servo and actuator control, wiring, system integration"
+  },
+  {
+   "id": "fsae",
+   "title": "Field Weakening Model",
+   "sub": "Carnegie Mellon Racing (Formula SAE), electric vehicle team",
+   "date": "Aug. 2024 to Present",
+   "tags": [
+    "Modeling",
+    "Controls"
+   ],
+   "bullets": [
+    "Modeled field weakening in MATLAB and Simulink for the team's high-voltage electric motor system, varying it to measure its effect on torque, power, and speed.",
+    "Found a vehicle speed gain of over 20% and showed that field weakening holds constant power at higher speeds at the cost of torque."
+   ],
+   "skills": "MATLAB, Simulink, motor control, modeling and simulation"
+  },
+  {
+   "id": "cache",
+   "title": "Cache Lab",
+   "sub": "Cache simulator and matrix transpose optimization in C (18-213)",
+   "date": "",
+   "tags": [
+    "Software",
+    "Architecture"
+   ],
+   "bullets": [
+    "Wrote a cache simulator in C and optimized a matrix transpose for cache performance.",
+    "Transpose results: 35,456 cycles (32x32) and 33,881,344 cycles (1024x1024)."
+   ],
+   "skills": "C, cache architecture, performance optimization"
+  }
+ ]
+}
