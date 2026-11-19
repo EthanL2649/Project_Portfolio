@@ -1,203 +1,402 @@
 {
  "name": "Ethan Liu",
- "tagline": "ECE student at Carnegie Mellon University (integrated B.S. and M.S., expected May 2028), seeking hardware internships and co-ops in IC design, physical design, and design verification.",
+ "eyebrow": "Electrical and Computer Engineering, Carnegie Mellon University",
+ "tagline": "Integrated B.S. and M.S. student (expected May 2028) seeking hardware internships and co-ops in IC design, physical design, and design verification. This portfolio expands on my resume with the detail behind each project: the problem, what I built, how I approached it, and what I accomplished.",
  "email": "eeliu@andrew.cmu.edu",
  "linkedin": "https://www.linkedin.com/in/ethan-liu-pf06",
  "github": "https://github.com/EthanL2649",
+ "groups": [
+  {
+   "title": "IC Design and Physical Layout",
+   "blurb": "Custom IC layout, synthesis, place and route, and timing in the Cadence flow."
+  },
+  {
+   "title": "RTL Design, Architecture, and FPGA",
+   "blurb": "SystemVerilog projects covering verification, a network on chip, a CPU coprocessor, and FPGA designs."
+  },
+  {
+   "title": "Research and Team Experience",
+   "blurb": "Board-level research and modeling work on the Formula SAE electric vehicle team."
+  },
+  {
+   "title": "Hardware Builds",
+   "blurb": "Projects that took a design from concept to a working physical system."
+  },
+  {
+   "title": "Software Projects",
+   "blurb": "Programming projects in C and Python that complement the hardware work."
+  }
+ ],
+ "themes": [
+  [
+   "Trade-off analysis",
+   "Whether sweeping clock targets in Genus, modeling field weakening in Simulink, or pipelining an FPGA accelerator, I like measuring what each design choice costs in speed, area, power, or torque and then deciding where it stops being worth it."
+  ],
+  [
+   "Trusting the data",
+   "The timing violation in my datapath, the filter stages in my RFID reader, and the coprocessor debugging on RISC240 all taught me to measure first and fix what the measurements show rather than what I assumed."
+  ],
+  [
+   "A verification mindset",
+   "I test designs in layers: directed assembly programs for the coprocessor, state-transition testbenches for the game controller, and multiple test categories (functional, stress, fairness, performance) for the network on chip."
+  ],
+  [
+   "End-to-end ownership",
+   "From the self-playing guitar to the RFID reader, I have taken systems from concept through CAD, wiring, firmware, and debugging to a working prototype."
+  ],
+  [
+   "Working across layers and with people",
+   "My work runs from logic design to physical layout to board-level design, and I contribute to a 4-person board team inside a 12-person research project."
+  ]
+ ],
+ "interest": "I am most interested in physical design and timing, and also in RTL logic design and verification, working on processors and ASICs where logic, layout, and timing meet.",
  "projects": [
   {
    "id": "sram",
+   "g": 0,
    "featured": true,
    "title": "256x16b SRAM Design",
-   "sub": "Full-custom memory in Cadence Virtuoso, 45nm GPDK (18-622)",
+   "meta": "18-622 Final Project | Cadence Virtuoso, Spectre | GPDK 45 nm",
+   "area": "Memory design, custom IC",
    "date": "Oct. 2026 to Nov. 2026",
-   "tags": [
-    "Physical Design",
-    "Custom IC",
-    "Memory"
+   "highlight": "Full-custom 4 Kb SRAM in 45 nm, DRC/LVS-clean at the top level, meeting every constraint at the TTTT, TTLH, and TTHL corners",
+   "overview": "The final project for my VLSI course: design a high-performance single-port SRAM with 256 words of 16 bits (4 Kb) in the 45 nm GPDK process. I was responsible for the full schematic and layout, which had to be DRC and LVS clean and meet the specification: access and cycle time under 24 FO4 at the TTLH corner, power under 2.0 mW on a 50/50 read and write mix, a repeated cell area under 1600 λ², total area under 12M λ² with cell area efficiency above 50%, and correct operation in every process corner. The project ran in weekly stages from the cell up to the integrated top level.",
+   "did": [
+    "Week 1, cell design: designed the SRAM cell schematic and laid it out as compactly as the normal logic DRC rules allow. Built a 4x4 array layout to show tiling and contact sharing, extracted the repeat distance, area, and X and Y dimensions, and simulated cell read and write waveforms.",
+    "Week 2, periphery schematics: designed the decoder, the cell I/O, and the control signal generator at the schematic level, each with wire parasitic models. Integrated them with the cell array into a full schematic of the memory.",
+    "Week 2, simulation: built dedicated critical path schematics and simulated the read and write critical paths, and simulated the read static noise margin of the cell to check its stability.",
+    "Week 3, block layouts: laid out the decoder, the cell I/O, and the control signal generator, and brought each to a DRC and LVS clean result. Ran full-schematic read and write simulations of the memory.",
+    "Top-level integration: integrated the decoder, cell I/O, and control signal generator with the cell array into a complete top-level layout of the memory, and brought it to a DRC and LVS clean result.",
+    "Verification: ran post-layout extracted simulation of read and write for delay and power across process, voltage, and temperature corners, and checked the design with an extensive testbench covering all possible test vectors."
    ],
-   "bullets": [
-    "Designed a single-port 256-word by 16-bit SRAM in the 45nm GPDK process against four targets: under 24 FO4 access time, under 2.0 mW, a repeated cell area under 1600 λ², and cell area efficiency above 50%.",
-    "Laid out the SRAM cell as compactly as the DRC rules allow and built a 4x4 tiled array to extract the repeat distance, area, and X and Y dimensions and show tiling and contact sharing.",
-    "Completed DRC/LVS-clean layouts of the decoder, cell I/O, and control signal generator and integrated them with the cell array into a DRC/LVS-clean top-level layout.",
-    "Built schematics with wire parasitic models and ran read and write critical path and noise margin simulations.",
-    "Meets every constraint at the TTTT, TTLH, and TTHL corners, verified with an extensive testbench covering all test vectors."
+   "results": [
+    "The design meets all of the project constraints at the TTTT, TTLH, and TTHL corners.",
+    "The extensive testbench covering all possible test vectors passes.",
+    "Measured values (cell area, access time in FO4, power, and noise margin) will be added to this page."
    ],
-   "skills": "Cadence Virtuoso, Spectre, schematic and layout, DRC/LVS, parasitic modeling, corner simulation"
+   "skills": "Cadence Virtuoso, Spectre, SRAM cell design, schematic and layout, wire parasitic modeling, static noise margin analysis, corner simulation, DRC/LVS"
   },
   {
    "id": "rtl2gds",
+   "g": 0,
    "featured": true,
-   "title": "RTL-to-GDS Flow and PPA Analysis",
-   "sub": "Signed MAC datapath with Cadence Genus and Innovus",
-   "date": "",
-   "tags": [
-    "Physical Design",
-    "STA",
-    "TCL"
+   "title": "RTL-to-GDS Synthesis and PPA Analysis",
+   "meta": "18-622 VLSI course | Cadence Genus, TCL, Xcelium | Individual lab",
+   "area": "Synthesis, TCL",
+   "highlight": "Pushed a MAC unit from 10 MHz to 200 MHz and quantified the area, power, and leakage cost of each step",
+   "overview": "This lab covered the synthesis half of the RTL-to-GDS flow. After running tutorial designs, the main assignment handed me a fixed RTL block with no description. My job was to work out what it did, extract as much power, performance, and area (PPA) from it as I could, and document the trade-offs I found.",
+   "did": [
+    "Identified the block as a pipelined signed 16x16 multiply-accumulate (MAC) unit that accumulates products into a 36-bit register and outputs a saturated 16-bit result with an overflow flag, with a 24-bit control word and valid bit passing through a 16-cycle delay line.",
+    "Found that the critical path was the multiplier to accumulator adder loop, and used that to decide where the synthesis effort should go.",
+    "Ran the flow with the provided TCL scripts, changing only the clock constraint and the supplied switches: synthesis effort, voltage-threshold (VT) level, and cost-group weights.",
+    "Compared low-VT (LVT) and standard-VT cells at a relaxed 100 ns clock, then swept the clock period from 100 ns to 8 ns to 5 ns.",
+    "At the tightest clock, gave the critical timing group a higher weight so the tool would focus on closing worst negative slack there while limiting area and power growth elsewhere."
    ],
-   "bullets": [
-    "Synthesized a pipelined signed 16x16 multiply-accumulate unit in Cadence Genus using TCL-driven flows that swept clock targets and cell types, weighting the critical path group to close worst negative slack.",
-    "Quantified a 1.6x faster critical path at roughly 5x the leakage, and a 200 MHz clock push that cost 8.6% more area and 12% more energy per cycle.",
-    "Ran the full Innovus flow (placement, clock tree synthesis, hold fixing, routing, signoff) to GDS, comparing post-signoff timing, area, and power against synthesis and checking for setup and hold violations.",
-    "Customized floorplanning and pin placement with TCL and scaled the flow to a 2x2 MAC array, assigning macro pins and clock entry to minimize block area."
+   "results": [
+    "LVT versus standard VT: the critical path dropped from 9.22 ns to 5.83 ns (about 1.6x faster per full-adder carry) at roughly 5x the leakage. Because leakage was under 3% of total power at a low clock frequency, the penalty was small in absolute terms.",
+    "100 ns to 8 ns: the same netlist ran 12.5x faster with the same energy per operation and no meaningful area cost, so the speed was effectively free.",
+    "8 ns to 5 ns (200 MHz): the tool replaced ripple-carry adders with carry-lookahead logic and upsized cells, giving about 60% more throughput for about 8.6% more area and 12% more energy per cycle, and the design met timing.",
+    "Conclusion: the best efficiency is at any period where speed is still free; maximum performance costs a modest area and energy premium at 200 MHz; and leakage-sensitive designs should use standard-VT cells at a slower clock.",
+    "Limitation I reported: I did not run an equal-weight baseline at 5 ns, so the effect of the group weighting is not isolated from the effect of the tighter clock."
    ],
-   "skills": "Cadence Genus, Cadence Innovus, TCL, static timing analysis, PPA analysis"
+   "extra": [
+    "Supporting analyses from the same lab",
+    [
+     "Synthesized an 8-bit adder (about 461 MHz, 252.58 µm², 51.59 µW), then 16-bit (about 400 MHz, 673.66 µm²) and 32-bit (about 412 MHz, 1653.65 µm²) versions, and observed that area and power grow faster than linearly with width.",
+     "Synthesized my 4-bit combinational datapath from an earlier lab, reaching a minimum area of 55.107 µm² at roughly 2.09 GHz."
+    ]
+   ],
+   "skills": "Cadence Genus, TCL scripting, logic synthesis, static timing analysis, PPA optimization, gate-level simulation (Xcelium), report writing"
+  },
+  {
+   "id": "innovus",
+   "g": 0,
+   "title": "Place and Route in Cadence Innovus",
+   "meta": "18-622 Lab 4 | Cadence Innovus, TCL | Individual lab",
+   "area": "Physical design, TCL",
+   "highlight": "Ran the full Innovus flow to GDS and built a 2x2 MAC array with custom pin placement and macro routing limits",
+   "overview": "This lab was the implementation half of the RTL-to-GDS flow. After synthesizing the multiply-accumulate (MAC) block in Genus, I took it through placement and routing in Cadence Innovus, studied what each step does to timing, then customized the floorplan and scaled the flow to a 2x2 array of MAC blocks.",
+   "did": [
+    "Ran the full flow step by step (init, place, clock tree synthesis, post-CTS hold fixing, route, and signoff) and summarized what each step does.",
+    "Compared post-signoff critical path delay, area, and power against the Genus results, and checked for setup and hold violations in the reports.",
+    "Traced the timing reports after each step to find where the ideal clock assumption is dropped and real clock skew appears, and checked hold timing after signoff.",
+    "Inspected the layout interactively: the metals used for the power grid, the top metal width, the standard cell row height, and which sides the pins were placed on.",
+    "Customized the floorplan in the flow's post-init TCL script, changing the pin placement commands to put inputs on the left, outputs on the right, and the clock at the bottom, then measured the effect on delay, power, and area.",
+    "Scaled the flow to a 2x2 MAC array built from four macros. I assigned pin locations for each macro, brought the clock in at the center of one side, put the A and B inputs on the top and left, put the outputs on the right, and worked to reduce total block area by raising the utilization of the empty space around the macros above the template's roughly 5%. No routing was allowed on metal layers M5 and below inside the macros."
+   ],
+   "results": [
+    "The ideal clock assumption disappears at clock tree synthesis, and hold timing has to be checked afterward because real skew can create violations that synthesis never showed.",
+    "I treated floorplan choices such as pin placement and macro orientation as part of the PPA result, since they change wire length, area, and routing."
+   ],
+   "skills": "Cadence Innovus, TCL scripting, floorplanning, clock tree synthesis, static timing analysis, hold fixing, PPA analysis"
   },
   {
    "id": "datapath",
-   "title": "Digital Datapath Design and Physical Layout",
-   "sub": "Custom IC design in Cadence Virtuoso, gpdk045",
-   "date": "",
-   "tags": [
-    "Physical Design",
-    "Custom IC",
-    "STA"
+   "g": 0,
+   "title": "Digital Datapath Design and Layout",
+   "meta": "18-320 Digital Design | Cadence Virtuoso, ADE Explorer | gpdk045 45 nm",
+   "area": "Custom IC design",
+   "highlight": "DRC/LVS-clean layout at 65.265 µm², under the 75 µm² limit; root-caused a 2.4 GHz setup violation",
+   "overview": "In this project I took a digital circuit through the full custom IC flow: schematic, physical layout, verification, parasitic extraction, and timing analysis. The goal was a correct, compact layout that met a 2.4 GHz clock target.",
+   "did": [
+    "Designed a master-slave flip-flop and a multi-stage digital datapath as hierarchical schematics in Cadence Virtuoso using the gpdk045 45 nm PDK.",
+    "Produced a physical layout following the foundry design rules and verified it with DRC and LVS until it was fully clean.",
+    "Ran parasitic extraction and simulated the extracted design in ADE Explorer, then performed static timing analysis against the 2.4 GHz target.",
+    "Confirmed edge-triggered, non-transparent behavior of the master-slave flip-flop as opposed to a level-sensitive latch."
    ],
-   "bullets": [
-    "Designed a master-slave flip-flop and multi-stage datapath in the gpdk045 45nm process and drew the layout, reaching a DRC/LVS-clean 65.265 µm², within the 75 µm² constraint.",
-    "Ran parasitic extraction and static timing analysis in ADE Explorer, root-causing a setup violation against a 2.4 GHz target clock."
+   "results": [
+    "Delivered a clean layout with a final area of 65.265 µm², inside the 75 µm² design constraint.",
+    "The timing check initially failed at 2.4 GHz. My first assumption was a mistake in my extraction setup, but after checking, the data was right and the design had a real setup-timing violation. I root-caused it from the post-extraction results rather than re-running the tool.",
+    "The main lesson was to trust measured data over my own assumptions when a result is surprising, which I have applied to debugging in later projects."
    ],
-   "skills": "Cadence Virtuoso, ADE Explorer, DRC/LVS, parasitic extraction, timing analysis"
+   "skills": "Cadence Virtuoso, ADE Explorer, schematic capture, physical layout, DRC/LVS, parasitic extraction, static timing analysis, root-cause analysis"
   },
   {
    "id": "abv",
+   "g": 1,
    "title": "Assertion-Based Verification of Encrypted Calculator IP",
-   "sub": "SystemVerilog assertions with Synopsys VCS (18-341)",
-   "date": "Oct. 2026",
-   "tags": [
-    "Verification",
-    "RTL"
+   "meta": "18-341 Project 4 | SystemVerilog, SVA, Synopsys VCS, DVE",
+   "area": "Verification, SystemVerilog",
+   "highlight": "36 concurrent assertions caught injected faults in all 7 faulty variants of an encrypted calculator IP, with no reference model",
+   "overview": "I was given an encrypted reverse polish notation (RPN) calculator as a black box and asked to verify it, with no golden or reference model allowed. The design has an 8-entry stack, four commands (START, ENTER, ARITH_OP, DONE), six operations (add, subtract, and, swap, negate, pop), and four error outputs (stackOverflow, unexpectedDone, dataOverflow, protocolError). All the checking had to come from assertions and from the test values I chose, so the work was to decide what correct behavior is and encode it.",
+   "did": [
+    "Wrote about 1,100 lines of SystemVerilog in the testbench: 36 concurrent assertions built from 28 properties, one immediate assertion for the post-reset check, and 32 directed test tasks.",
+    "Used SVA implications (|-> and |=>), property local variables, parameterized properties, and disable iff for reset.",
+    "Built a protocol and stack-depth tracker, a small FSM that predicts which error should fire without copying stack values, and kept one-cycle-old sampled copies so error messages report the values from the failing cycle.",
+    "Organized tests into four groups: initial behavior (handout waveforms, DONE edge cases, ignored inputs); stack (walking ones and zeros across all 8 places, overflow on the ninth push, every operation on a full stack); arithmetic (carry and borrow chains, both sides of every overflow boundary); and protocol (every unused operation bit, every invalid command, errors after errors, reset in the middle of a calculation).",
+    "Wrote a 10-category fault model to guide which bugs the assertions and tests had to be able to catch."
    ],
-   "bullets": [
-    "Verified an encrypted RPN calculator IP (8-entry stack, 6 operations, 4 error outputs) without a reference model, using a 10-category fault model and 32 directed tests.",
-    "Wrote 36 concurrent assertions from 28 properties using implications, local variables, and reset-disabled checks, plus a protocol and stack-depth tracker that predicts errors without copying stack contents.",
-    "Detected injected faults in all 7 faulty design variants (dropped carry, one's-complement negation, no-op swap, non-sticky error flags) with zero false alarms on the fault-free model."
+   "results": [
+    "Zero assertion failures on the fault-free model, so the checks did not raise false alarms.",
+    "Detected faults in all 7 faulty design variants, for example an adder dropping the carry from bit 11 to bit 12, negate computing one's complement, swap acting as a no-op, protocolError not held until DONE, missing item-count error checks, and DONE being ignored with more than one item on the stack.",
+    "The last variant (Phase 2) took longer, and I resolved it by debugging with a TA."
    ],
-   "skills": "SystemVerilog, SVA, Synopsys VCS, DVE, fault modeling"
+   "skills": "SystemVerilog, SVA (concurrent and immediate assertions), Synopsys VCS, DVE waveform viewer, fault modeling, Git"
   },
   {
    "id": "noc",
+   "g": 1,
    "title": "Network on Chip (NoC)",
-   "sub": "SystemVerilog RTL design and verification",
-   "date": "",
-   "tags": [
-    "RTL",
-    "Verification"
+   "meta": "18-341 Digital Systems | SystemVerilog, VCS | Individual project, two parts",
+   "area": "RTL, verification",
+   "highlight": "Round-robin arbitration with concurrent transfers; passed every test category",
+   "overview": "I designed the core components of a simple network on chip: nodes that inject and receive packets, and routers that move packets between them. The topology had two routers connecting six nodes, with testbenches standing in for the components sending and receiving messages. The goal was to deliver every packet correctly, then to make the network fast and fair.",
+   "did": [
+    "Wrote a Node module and a hardware FIFO queue to buffer 32-bit packets (source, destination, and 24 bits of data) coming from a testbench and send them into the network one byte at a time using a ready/valid style handshake.",
+    "Wrote a Router with four ports that reassembles incoming bytes into packets, decides which output port each packet needs, and forwards it, using concurrent finite-state machines at the FSM-D level of modeling.",
+    "Handled two different transfer widths: 32-bit word transfers between the testbench and nodes, and 8-bit byte-serial transfers between nodes and routers and between the two routers.",
+    "Moved beyond one transfer per clock so that independent packets (for example, port 0 to port 2 and port 2 to port 1) could move at the same time.",
+    "Added round-robin priority so that no input port could be starved when several packets competed for the same output."
    ],
-   "bullets": [
-    "Designed a synchronous Network-on-Chip at the FSM-D level with Node and Router modules, a custom FIFO, and round-robin arbitration, supporting concurrent packet transfers across a 2-router, 6-node topology.",
-    "Verified the design in VCS across functional, stress/load, fairness, and performance test categories, passing every category."
+   "results": [
+    "Completed both parts and passed every provided test category: single-packet transfers within and across routers, simultaneous concurrent transfers, source and destination stress tests, fairness, and a performance benchmark.",
+    "Kept the router within the limited storage budget while still delivering all packets without loss.",
+    "The project taught me how fixing one bottleneck (serialized transfers) exposes the next one (starvation), and how to reason about fairness and throughput together."
    ],
-   "skills": "SystemVerilog, FSM design, arbitration logic, functional verification, VCS"
+   "skills": "SystemVerilog, FSM design, FIFO design, arbitration and fairness logic, packed structs and arrays, VCS simulation, functional and performance verification, Git"
   },
   {
    "id": "risc240",
+   "g": 1,
    "title": "RISC240 Multiplication Coprocessor",
-   "sub": "Microarchitecture and RTL design, 16-bit RISC-V-derived CPU",
-   "date": "",
-   "tags": [
-    "RTL",
-    "Architecture",
-    "FPGA"
+   "meta": "18-240 Structure and Design of Digital Systems | SystemVerilog, FPGA",
+   "area": "Computer architecture",
+   "highlight": "New hardware block integrated into a RISC-V-derived CPU and debugged on real hardware",
+   "overview": "RISC240 is a 16-bit RISC-V-derived CPU used in my digital design course. In this lab I extended the processor with a hardware multiplication coprocessor, which meant understanding the existing datapath and control unit well enough to add a new block without breaking the rest of the machine.",
+   "did": [
+    "Implemented the multiplication coprocessor in SystemVerilog and integrated it into the CPU's microarchitecture, including its connection to the datapath and control logic.",
+    "Wrote RISC240 assembly test programs to exercise the coprocessor, and validated them in the course's instruction-level simulator before moving to hardware.",
+    "Synthesized the design and brought it up on an FPGA for a hardware demonstration."
    ],
-   "bullets": [
-    "Implemented a multiplication coprocessor in SystemVerilog and integrated it into the datapath and control logic of a 16-bit RISC-V-derived CPU.",
-    "Wrote assembly test programs and validated them in an instruction-level simulator, then synthesized the design and debugged timing and control interactions on FPGA hardware."
+   "results": [
+    "Debugged timing and control-signal interactions between the new coprocessor and the existing pipeline stages on real hardware until instructions sequenced correctly.",
+    "Gained hands-on experience with how a processor's datapath, control unit, and instruction set fit together, and how software tests can drive hardware verification."
    ],
-   "skills": "SystemVerilog, computer architecture, assembly, hardware debugging"
+   "skills": "SystemVerilog, computer architecture, microarchitecture, assembly programming, instruction-level simulation, FPGA synthesis, hardware debugging"
   },
   {
    "id": "matmul",
+   "g": 1,
    "title": "Matrix Multiply Accelerator",
-   "sub": "Pipelined FPGA design in Vivado",
-   "date": "",
-   "tags": [
-    "RTL",
-    "FPGA"
+   "meta": "18-341 Digital Systems | SystemVerilog, Vivado | Xilinx Spartan-7 (Boolean Board)",
+   "area": "FPGA, pipelining",
+   "highlight": "Met 100 MHz timing and finished in under 512 clock cycles",
+   "overview": "This project explored the special hardware features inside a modern FPGA. The task was to compute Y = A x B + C, where A is a 128x128 matrix of 8-bit values, B is an 8-bit vector, C is a 16-bit vector, and Y is a 32-bit vector, then display the sum of Y on the board. The design had to meet a 100 MHz clock and finish in as few clock cycles as possible.",
+   "did": [
+    "Designed a pipelined accelerator in SystemVerilog that used the FPGA's dual-port block RAM and hardware multiplier blocks to run many multiply-accumulate operations in parallel.",
+    "Used generate statements to instantiate multiple memories and multipliers, and organized the data so computations could run concurrently.",
+    "Handled the block RAM's registered-address behavior, where data appears a cycle after the address is presented, when building the pipeline.",
+    "Used Vivado static timing analysis to find the longest register-to-register paths and broke large blocks of logic into pipeline stages."
    ],
-   "bullets": [
-    "Designed a pipelined 128x128 matrix-vector multiply-accumulate in SystemVerilog on a Spartan-7, meeting 100 MHz timing and finishing in under 512 clock cycles."
+   "results": [
+    "Met the 100 MHz timing requirement with a positive worst negative slack.",
+    "Completed the full calculation in under 512 clock cycles, which was the assignment's stated speed target.",
+    "Kept all intermediate values at full width so that the speed gain did not cost accuracy."
    ],
-   "skills": "SystemVerilog, pipelining, Vivado, static timing analysis"
+   "skills": "SystemVerilog, Vivado, static timing analysis, pipelining, block RAM and multiplier IP, FPGA design, performance optimization"
+  },
+  {
+   "id": "mastermind",
+   "g": 1,
+   "title": "Mastermind FPGA Game Console",
+   "meta": "18-240 Structure and Design of Digital Systems | SystemVerilog, Vivado | FPGA",
+   "area": "FPGA, FSM design",
+   "highlight": "FSM-based game controller with live HDMI output",
+   "overview": "I built a hardware version of the Mastermind guessing game on an FPGA board, with a live video display. The design had a strict constraint: the control path had to be a finite-state machine and the datapath had to be built from standard components such as registers, comparators, and decoders.",
+   "did": [
+    "Designed an FSM-based control path and a standard-component datapath, including BCD round tracking and win detection across an 8-round game.",
+    "Synchronized all asynchronous board inputs (buttons and switches) to a 100 MHz system clock and generated derived 40 MHz and 200 MHz clocks for the display pipeline.",
+    "Integrated my logic with a provided VGA-to-HDMI IP core to drive a live display.",
+    "Wrote self-directed testbenches to verify the state transitions before synthesis."
+   ],
+   "results": [
+    "Delivered a working game on real hardware, demonstrated live over HDMI.",
+    "Learned how to handle clock-domain concerns for asynchronous inputs and how to verify an FSM in simulation before spending time on hardware."
+   ],
+   "skills": "SystemVerilog, FSM design, FPGA synthesis, Vivado, clock synchronization, testbench development, IP integration"
   },
   {
    "id": "harness",
+   "g": 2,
    "title": "IC I/O Test Harness (TinyTapeout)",
-   "sub": "Research assistant, CMU ECE",
+   "meta": "Research Assistant, CMU ECE | January 2026 to present",
+   "area": "PCB, board design",
    "date": "Jan. 2026 to Present",
-   "tags": [
-    "Board Design",
-    "Research"
+   "highlight": "Test board for TSMC tapeouts; 4-person board team in a 12-person project",
+   "overview": "This research project specifies a reusable test harness for small chip tapeouts in TSMC 180 nm and 65 nm processes, in the spirit of TinyTapeout. The harness includes on-chip infrastructure and a companion test PCB that connects a packaged chip to an FPGA for testing. I work on the board side.",
+   "did": [
+    "Built component libraries in Fusion 360 and KiCAD for the test PCB, including schematic symbols, footprints, and 3D models for level shifters, power-supply ICs, and connectors.",
+    "Selected and integrated dual-supply level-shifter ICs (FXL4TD245 and FXMAR2104), evaluating bidirectional voltage-translation range, I2C bus compatibility, and pin-count trade-offs against the datasheets.",
+    "Ran electrical rule checks (ERC) on the schematics.",
+    "Helped define board-level design decisions with the team, including the I/O pad arrangement as it scaled from 44 to 68 pins while staying compatible with the legacy standard.",
+    "Contributed to the bill of materials and part sourcing for board fabrication."
    ],
-   "bullets": [
-    "Contributed to board-level design for a chip test harness supporting TSMC 180nm/65nm tapeouts, building component libraries in Fusion 360 and KiCAD, selecting level-shifter ICs against datasheet specifications, and running ERC on the schematics.",
-    "Worked in a 4-person board team inside a 12-person project, documenting design trade-offs and contributing to BOM development and part sourcing."
+   "results": [
+    "Work as part of a 4-person board design team inside a 12-person multidisciplinary project, documenting design trade-offs for review across the group.",
+    "Learned how board-level requirements (voltage domains, bus compatibility, pin counts) connect back to chip-level specifications."
    ],
-   "skills": "Fusion 360, KiCAD, ERC, component selection, BOM development"
-  },
-  {
-   "id": "rfid",
-   "title": "125 kHz RFID Reader System",
-   "sub": "Analog circuits and embedded C",
-   "date": "Nov. 2025",
-   "tags": [
-    "Analog",
-    "Embedded",
-    "Hardware"
-   ],
-   "bullets": [
-    "Designed the reader coil and tag-powering circuitry for a passive 125 kHz tag, then built the analog band-pass and low-pass demodulation chain to recover baseband data.",
-    "Wrote C firmware to decode 40-bit tag IDs, with the analog and digital stages operating in one signal chain.",
-    "Debugged the filter stages through iterative bench measurement with an oscilloscope, multimeter, and bench power supplies until the data was recovered reliably."
-   ],
-   "skills": "Analog circuit design, filter design, embedded C, oscilloscope, multimeter, soldering"
-  },
-  {
-   "id": "guitar",
-   "title": "Self-Playing Guitar",
-   "sub": "BUILD18 Hardware Design Competition",
-   "date": "Jan. 2025",
-   "tags": [
-    "Embedded",
-    "CAD",
-    "Hardware"
-   ],
-   "bullets": [
-    "Led CAD and embedded design for a self-playing guitar, building a modular electromechanical interface of SolidWorks-modeled solenoid housings, servo mounts, and a linear-actuator linkage.",
-    "Wrote Arduino firmware on an ESP32 to coordinate servo and linear-actuator motion and completed all electrical wiring, delivering a working prototype that played a clean chord."
-   ],
-   "skills": "SolidWorks, ESP32, Arduino, servo and actuator control, wiring, system integration"
+   "skills": "Fusion 360, KiCAD, schematic capture, PCB design, ERC, component selection, BOM development, cross-functional collaboration, technical documentation"
   },
   {
    "id": "fsae",
-   "title": "Field Weakening Model",
-   "sub": "Carnegie Mellon Racing (Formula SAE), electric vehicle team",
+   "g": 2,
+   "title": "Carnegie Mellon Racing (Formula SAE)",
+   "meta": "Controls Member | August 2024 to present | MATLAB and Simulink",
+   "area": "Modeling, simulation",
    "date": "Aug. 2024 to Present",
-   "tags": [
-    "Modeling",
-    "Controls"
+   "highlight": "Simulink field-weakening model that boosted vehicle speed by over 20%",
+   "overview": "On the controls side of our Formula SAE electric vehicle team, I researched and modeled how field weakening affects a high-voltage motor system. When a motor reaches its voltage limit, field weakening lets it keep increasing speed, at the cost of torque.",
+   "did": [
+    "Researched the physics of field weakening and its effect on predicted power output.",
+    "Built a MATLAB and Simulink model of the trade-off and varied the amount of field weakening to see how torque, power, and speed responded.",
+    "Used the model to find a balance between added top speed and lost torque rather than simply maximizing one."
    ],
-   "bullets": [
-    "Modeled field weakening in MATLAB and Simulink for the team's high-voltage electric motor system, varying it to measure its effect on torque, power, and speed.",
-    "Found a vehicle speed gain of over 20% and showed that field weakening holds constant power at higher speeds at the cost of torque."
+   "results": [
+    "Determined that field weakening allows constant power output at higher speeds while reducing torque.",
+    "Optimizing the torque-power balance in the model led to a vehicle speed gain of over 20%."
    ],
-   "skills": "MATLAB, Simulink, motor control, modeling and simulation"
+   "skills": "MATLAB, Simulink, modeling and simulation, high-voltage motor systems, data analysis, design trade-off analysis"
+  },
+  {
+   "id": "rfid",
+   "g": 3,
+   "title": "125 kHz Passive RFID Reader System",
+   "meta": "Design Engineer | November 2025 | Analog circuits and embedded C",
+   "area": "Analog, firmware",
+   "date": "Nov. 2025",
+   "highlight": "Full signal chain from coil to decoded 40-bit ID",
+   "overview": "I designed an RFID reader system that powers and reads a passive 125 kHz tag, covering the whole signal chain from the reader coil to a decoded digital ID. The project combined inductive coupling, analog filtering, and digital decoding in one working prototype.",
+   "did": [
+    "Designed the reader coil and the circuitry that powers a passive tag through inductive coupling.",
+    "Built the analog demodulation chain, including band-pass and low-pass filtering stages, to recover baseband data from an amplitude-modulated carrier.",
+    "Wrote embedded firmware in C to decode 40-bit RFID identifiers and handle tag detection and validation."
+   ],
+   "results": [
+    "Debugged the filter stages through iterative hands-on measurement with an oscilloscope, multimeter, and bench power supplies until the baseband data could be recovered reliably.",
+    "Delivered a working prototype in which analog and digital stages operated together in one signal chain.",
+    "Practiced diagnosing problems by measuring real signals rather than relying only on calculation."
+   ],
+   "skills": "Analog circuit design, filter design, signal demodulation, embedded C firmware, lab measurement and debugging, hardware prototyping"
+  },
+  {
+   "id": "guitar",
+   "g": 3,
+   "title": "Self-Playing Guitar",
+   "meta": "Lead CAD and Embedded Systems Engineer | BUILD18 competition | January 2025",
+   "area": "Electromechanical",
+   "date": "Jan. 2025",
+   "highlight": "CAD, wiring, and firmware integrated into a working prototype",
+   "overview": "For a hardware design competition I led the build of a self-playing guitar. I set the goal myself, and it was personal because music has always mattered to me. The challenge was getting mechanical, electrical, and firmware pieces to work together precisely enough to sound like music.",
+   "did": [
+    "Designed and fabricated a modular electromechanical interface: custom CAD-modeled solenoid housings, servo mounts, and a linear-actuator linkage coupled to the guitar neck with custom clamps.",
+    "Engineered a detachable solenoid and servo mechanism for plucking and fretting that forms major chords, which covers many songs, while keeping the guitar removable and playable by hand so a beginner can also see finger positions.",
+    "Wrote Arduino firmware on an ESP32 that coordinated servo and linear-actuator motion, and completed all of the electrical wiring and system integration."
+   ],
+   "results": [
+    "Delivered a functional prototype that played a clean chord.",
+    "The hardest part was integration: the plucking and fretting had to line up with the actuator positioning each chord, and early attempts did not sound right. I debugged by moving between the mechanical design, wiring, and firmware instead of assuming where the fault was.",
+    "Took full end-to-end ownership of a system spanning CAD, electronics, and software."
+   ],
+   "skills": "SolidWorks and CAD, ESP32, Arduino firmware, actuator and servo control, electrical wiring, system integration, prototyping"
   },
   {
    "id": "cache",
-   "title": "Cache Lab",
-   "sub": "Cache simulator and matrix transpose optimization in C (18-213)",
-   "date": "",
-   "tags": [
-    "Software",
-    "Architecture"
+   "g": 4,
+   "title": "Cache Simulator and Matrix Transpose",
+   "meta": "18-213 Cache Lab | C, Git | Individual project",
+   "area": "C, systems",
+   "highlight": "Cache simulator in C matching the reference; transpose at 35,456 cycles (32x32) and 33,881,344 cycles (1024x1024)",
+   "overview": "This project had two parts: write a cache simulator in C, then write a matrix transpose function that runs as few cycles as possible against a simulated cache. It is the project where I learned how cache design decisions show up directly in code performance.",
+   "did": [
+    "Wrote a command-line cache simulator in C that takes the number of set index bits, lines per set, and block bits, then processes a memory trace file. It uses LRU replacement and a write-back, write-allocate policy, and reports hits, misses, evictions, and dirty bytes.",
+    "Parsed options with getopt and trace lines with fgets and strtoul, and handled bad or missing arguments with the same error messages as the reference simulator.",
+    "Wrote my own short memory traces that produce exact hit, miss, and eviction counts within a small operation limit, to confirm I understood the cache behavior.",
+    "Optimized a matrix transpose function against a simulated cache, with a separate target for each matrix size."
    ],
-   "bullets": [
-    "Wrote a cache simulator in C and optimized a matrix transpose for cache performance.",
-    "Transpose results: 35,456 cycles (32x32) and 33,881,344 cycles (1024x1024)."
+   "results": [
+    "The simulator matched the reference simulator on every test trace.",
+    "The transpose took 35,456 cycles for a 32x32 matrix and 33,881,344 cycles for a 1024x1024 matrix, both under the full-credit thresholds of 36,000 and 35,100,000."
    ],
-   "skills": "C, cache architecture, performance optimization"
+   "skills": "C, cache memory systems, memory hierarchy optimization, command-line tools, Git"
+  },
+  {
+   "id": "fight",
+   "g": 4,
+   "title": "Multiplayer Fighting Game",
+   "meta": "Product Engineer | April to May 2025 | Python",
+   "area": "Python, networking",
+   "date": "Apr. 2025 to May 2025",
+   "highlight": "Real-time client-server game with synchronized state",
+   "overview": "I built a multiplayer fighting game in Python with a custom client-server architecture. The game needed real-time communication so that two players saw a consistent game at the same time.",
+   "did": [
+    "Built a client-server architecture on socket.io servers with real-time state synchronization and input handling.",
+    "Implemented gameplay mechanics including dashing, blinking, plunging, and parrying.",
+    "Built a main menu interface that dynamically resizes and repositions with the window, with modular features such as interactive navigation, acknowledgements, and control reference panels, plus game state management for clean entry and exit."
+   ],
+   "results": [
+    "Delivered a working multiplayer game with synchronized state between players.",
+    "Practiced structuring a larger Python program with separate networking, game logic, and interface components."
+   ],
+   "skills": "Python, socket.io, client-server networking, real-time state synchronization, UI design, game state management"
+  },
+  {
+   "id": "c0vm",
+   "g": 4,
+   "title": "C0VM Bytecode Virtual Machine",
+   "meta": "15-122 Principles of Imperative Computation | C",
+   "area": "C, systems",
+   "highlight": "Stack-based virtual machine for C0 programs",
+   "overview": "In this project I implemented a virtual machine in C that executes compiled C0 programs. It is a stack-based machine, so every instruction reads its operands from an operand stack and pushes its result back.",
+   "did": [
+    "Implemented the instruction fetch and decode loop that executes bytecode instructions for arithmetic, control flow, memory operations, and function calls.",
+    "Managed the operand stack and function call frames so that nested calls and returns work correctly.",
+    "Worked with low-level C memory handling and pointers, which connects directly to how real processors execute instructions."
+   ],
+   "results": [
+    "Gained a concrete understanding of how a processor-like machine executes a program one instruction at a time.",
+    "Strengthened my C programming and debugging skills on a systems-level task."
+   ],
+   "skills": "C, systems programming, stack-based virtual machines, pointers and memory management, debugging"
   }
  ]
 }
