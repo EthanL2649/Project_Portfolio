@@ -56,7 +56,7 @@ page=f'''<!doctype html>
 <meta name="description" content="Hardware and IC design project portfolio of Ethan Liu, Carnegie Mellon ECE.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
+<link rel="stylesheet" href="style.css?v=3"></head><body>
 <div class="topbar"></div>
 <header id="nav"><div class="wrap navin">{nav()}</div></header>
 <main>
